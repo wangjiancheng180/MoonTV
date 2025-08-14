@@ -19,14 +19,15 @@ export async function GET(request: NextRequest) {
     const records = await db.getAllPlayRecords(authInfo.username);
     return NextResponse.json(records, { status: 200 });
   } catch (err) {
-    console.error('获取播放记录失败', err);
+    const e = err as Error;
+    console.error('获取播放记录失败', e);
     return NextResponse.json(
         {
           error: 'Internal Server Error',
-          details:err?.message || String(err),
-          stack: err?.stack, // 方便调试
+          details: e.message,
+          stack: e.stack,
         },
-      { status: 500 }
+        { status: 500 }
     );
   }
 }
