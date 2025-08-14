@@ -21,7 +21,11 @@ export async function GET(request: NextRequest) {
   } catch (err) {
     console.error('获取播放记录失败', err);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+        {
+          error: 'Internal Server Error',
+          details:err?.message || String(err),
+          stack: err?.stack, // 方便调试
+        },
       { status: 500 }
     );
   }
