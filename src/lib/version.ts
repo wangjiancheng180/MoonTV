@@ -24,7 +24,9 @@ const VERSION_CHECK_URLS = [
 export async function checkForUpdates(): Promise<UpdateStatus> {
   try {
     // 尝试从主要URL获取版本信息
-    const primaryVersion = await fetchVersionFromUrl(VERSION_CHECK_URLS[0]);
+    //const primaryVersion = await fetchVersionFromUrl(VERSION_CHECK_URLS[0]);
+    //固定版本
+    const primaryVersion = '20250804231933';
     if (primaryVersion) {
       return compareVersions(primaryVersion);
     }
