@@ -17,6 +17,7 @@ const STORAGE_TYPE =
 
 // 创建存储实例
 function createStorage(): IStorage {
+  console.error("STORAGE_TYPE",STORAGE_TYPE);
   switch (STORAGE_TYPE) {
     case 'redis':
       return new RedisStorage();
@@ -36,6 +37,7 @@ let storageInstance: IStorage | null = null;
 
 export function getStorage(): IStorage {
   if (!storageInstance) {
+    console.error("创建存储实例")
     storageInstance = createStorage();
   }
   return storageInstance;
@@ -52,6 +54,7 @@ export class DbManager {
 
   constructor() {
     this.storage = getStorage();
+    console.error("创建storage",this.storage)
   }
 
   // // 播放记录相关方法
