@@ -59,6 +59,7 @@ export class D1Storage implements IStorage {
   ): Promise<PlayRecord | null> {
     try {
       const db = await this.getDatabase();
+      console.log('获取到的db',db)
       const result = await db
         .prepare('SELECT * FROM play_records WHERE username = ? AND key = ?')
         .bind(userName, key)
