@@ -17,18 +17,18 @@ const STORAGE_TYPE =
 
 // 创建存储实例
 function createStorage(): IStorage {
-  console.error("STORAGE_TYPE",STORAGE_TYPE);
+  console.log("STORAGE_TYPE",STORAGE_TYPE,"STORAGE_TYPE的长度",STORAGE_TYPE.length);
   switch (STORAGE_TYPE.trim()) {
     case 'redis':
       return new RedisStorage();
     case 'upstash':
       return new UpstashRedisStorage();
     case 'd1':
-      console.error("创建D1Storage");
+      console.log("创建D1Storage");
       return new D1Storage();
     case 'localstorage':
     default:
-      console.error("创建null的storage");
+      console.log("创建null的storage");
       // 默认返回内存实现，保证本地开发可用
       return new D1Storage();
       // return null as unknown as IStorage;
@@ -58,7 +58,6 @@ export class DbManager {
 
   constructor() {
     this.storage = getStorage();
-    console.error("创建storage",this.storage)
   }
 
   // // 播放记录相关方法
