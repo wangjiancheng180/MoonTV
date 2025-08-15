@@ -125,6 +125,7 @@ export class D1Storage implements IStorage {
   ): Promise<Record<string, PlayRecord>> {
     try {
       const db = await this.getDatabase();
+      console.log('获取到的db',db)
       const result = await db
         .prepare(
           'SELECT * FROM play_records WHERE username = ? ORDER BY save_time DESC'

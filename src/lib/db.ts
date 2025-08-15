@@ -54,15 +54,15 @@ export class DbManager {
     this.storage = getStorage();
   }
 
-  // 播放记录相关方法
-  async getPlayRecord(
-    userName: string,
-    source: string,
-    id: string
-  ): Promise<PlayRecord | null> {
-    const key = generateStorageKey(source, id);
-    return this.storage.getPlayRecord(userName, key);
-  }
+  // // 播放记录相关方法
+  // async getPlayRecord(
+  //   userName: string,
+  //   source: string,
+  //   id: string
+  // ): Promise<PlayRecord | null> {
+  //   const key = generateStorageKey(source, id);
+  //   return this.storage.getPlayRecord(userName, key);
+  // }
 
   async savePlayRecord(
     userName: string,
