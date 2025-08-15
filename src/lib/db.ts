@@ -77,6 +77,7 @@ export class DbManager {
   async getAllPlayRecords(userName: string): Promise<{
     [key: string]: PlayRecord;
   }> {
+    console.error("storge",this.storage)
     return this.storage.getAllPlayRecords(userName);
   }
 

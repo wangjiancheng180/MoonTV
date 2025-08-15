@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(records, { status: 200 });
   } catch (err) {
     const e = err as Error;
+    console.error("db对象",db)
     console.error('获取播放记录失败', e);
     return NextResponse.json(
         {
