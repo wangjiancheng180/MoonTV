@@ -96,7 +96,7 @@ async function initConfig() {
       if (adminConfig) {
         // 补全 SourceConfig
         const sourceConfigMap = new Map(
-          (adminConfig.SourceConfig || []).map((s) => [s.key, s])
+            (adminConfig.SourceConfig || []).map((s) => [s.key, s])
         );
 
         apiSiteEntries.forEach(([key, site]) => {
@@ -128,7 +128,7 @@ async function initConfig() {
 
         // 补全 CustomCategories
         const customCategoriesMap = new Map(
-          adminConfig.CustomCategories.map((c) => [c.query + c.type, c])
+            adminConfig.CustomCategories.map((c) => [c.query + c.type, c])
         );
 
         customCategories.forEach((category) => {
@@ -143,7 +143,7 @@ async function initConfig() {
 
         // 检查现有 CustomCategories 是否在 fileConfig.custom_category 中，如果不在则标记为 custom
         const customCategoriesKeys = new Set(
-          customCategories.map((c) => c.query + c.type)
+            customCategories.map((c) => c.query + c.type)
         );
         customCategoriesMap.forEach((category) => {
           if (!customCategoriesKeys.has(category.query + category.type)) {
@@ -155,7 +155,7 @@ async function initConfig() {
         adminConfig.CustomCategories = Array.from(customCategoriesMap.values());
 
         const existedUsers = new Set(
-          (adminConfig.UserConfig.Users || []).map((u) => u.username)
+            (adminConfig.UserConfig.Users || []).map((u) => u.username)
         );
         userNames.forEach((uname) => {
           if (!existedUsers.has(uname)) {
@@ -169,7 +169,7 @@ async function initConfig() {
         const ownerUser = process.env.USERNAME;
         if (ownerUser) {
           adminConfig!.UserConfig.Users = adminConfig!.UserConfig.Users.filter(
-            (u) => u.username !== ownerUser
+              (u) => u.username !== ownerUser
           );
           adminConfig!.UserConfig.Users.unshift({
             username: ownerUser,
@@ -194,15 +194,15 @@ async function initConfig() {
           SiteConfig: {
             SiteName: process.env.SITE_NAME || 'MoonTV',
             Announcement:
-              process.env.ANNOUNCEMENT ||
-              '本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。',
+                process.env.ANNOUNCEMENT ||
+                '本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。',
             SearchDownstreamMaxPage:
-              Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
+                Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
             SiteInterfaceCacheTime: fileConfig.cache_time || 7200,
             ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || '',
             DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || '',
             DisableYellowFilter:
-              process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
+                process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
           },
           UserConfig: {
             AllowRegister: process.env.NEXT_PUBLIC_ENABLE_REGISTER === 'true',
@@ -242,15 +242,15 @@ async function initConfig() {
       SiteConfig: {
         SiteName: process.env.SITE_NAME || 'MoonTV',
         Announcement:
-          process.env.ANNOUNCEMENT ||
-          '本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。',
+            process.env.ANNOUNCEMENT ||
+            '本网站仅提供影视信息搜索服务，所有内容均来自第三方网站。本站不存储任何视频资源，不对任何内容的准确性、合法性、完整性负责。',
         SearchDownstreamMaxPage:
-          Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
+            Number(process.env.NEXT_PUBLIC_SEARCH_MAX_PAGE) || 5,
         SiteInterfaceCacheTime: fileConfig.cache_time || 7200,
         ImageProxy: process.env.NEXT_PUBLIC_IMAGE_PROXY || '',
         DoubanProxy: process.env.NEXT_PUBLIC_DOUBAN_PROXY || '',
         DisableYellowFilter:
-          process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
+            process.env.NEXT_PUBLIC_DISABLE_YELLOW_FILTER === 'true',
       },
       UserConfig: {
         AllowRegister: process.env.NEXT_PUBLIC_ENABLE_REGISTER === 'true',
@@ -265,16 +265,18 @@ async function initConfig() {
         disabled: false,
       })),
       CustomCategories:
-        fileConfig.custom_category?.map((category) => ({
-          name: category.name,
-          type: category.type,
-          query: category.query,
-          from: 'config',
-          disabled: false,
-        })) || [],
+          fileConfig.custom_category?.map((category) => ({
+            name: category.name,
+            type: category.type,
+            query: category.query,
+            from: 'config',
+            disabled: false,
+          })) || [],
     } as AdminConfig;
-  // }
+    // }
+  }
 }
+
 
 export async function getConfig(): Promise<AdminConfig> {
   const storageType = process.env.NEXT_PUBLIC_STORAGE_TYPE || 'localstorage';
