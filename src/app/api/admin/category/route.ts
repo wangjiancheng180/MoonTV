@@ -18,7 +18,7 @@ interface BaseBody {
 
 export async function POST(request: NextRequest) {
   const storageType = process.env.NEXT_PUBLIC_STORAGE_TYPE || 'localstorage';
-  if (storageType === 'localstorage') {
+  if (storageType.trim() === 'localstorage') {
     return NextResponse.json(
       {
         error: '不支持本地存储进行管理员配置',
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
-  if (storageType === 'd1' || storageType === 'upstash') {
+  if (storageType.trim() === 'd1' || storageType.trim() === 'upstash') {
     return NextResponse.json(
       {
         error: 'D1 和 Upstash 实例请通过配置文件调整',

@@ -451,6 +451,10 @@ export class D1Storage implements IStorage {
   async getAdminConfig(): Promise<AdminConfig | null> {
     try {
       const db = await this.getDatabase();
+      console.error("进来获取管理员配置!")
+      if (db == null) {
+        return null;
+      }
       const result = await db
         .prepare('SELECT config FROM admin_config WHERE id = 1')
         .first<{ config: string }>();
