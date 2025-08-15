@@ -18,7 +18,7 @@ const STORAGE_TYPE =
 // 创建存储实例
 function createStorage(): IStorage {
   console.error("STORAGE_TYPE",STORAGE_TYPE);
-  switch (STORAGE_TYPE) {
+  switch (STORAGE_TYPE.trim()) {
     case 'redis':
       return new RedisStorage();
     case 'upstash':
@@ -28,8 +28,10 @@ function createStorage(): IStorage {
       return new D1Storage();
     case 'localstorage':
     default:
+      console.error("创建null的storage");
       // 默认返回内存实现，保证本地开发可用
-      return null as unknown as IStorage;
+      return new D1Storage();
+      // return null as unknown as IStorage;
   }
 }
 
