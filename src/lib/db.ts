@@ -24,6 +24,7 @@ function createStorage(): IStorage {
     case 'upstash':
       return new UpstashRedisStorage();
     case 'd1':
+      console.error("创建D1Storage");
       return new D1Storage();
     case 'localstorage':
     default:
@@ -37,8 +38,9 @@ let storageInstance: IStorage | null = null;
 
 export function getStorage(): IStorage {
   if (!storageInstance) {
-    console.error("创建存储实例")
+    console.error("Before createStorage",storageInstance);
     storageInstance = createStorage();
+    console.error("After createStorage", storageInstance);
   }
   return storageInstance;
 }
